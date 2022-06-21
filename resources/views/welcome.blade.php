@@ -27,36 +27,40 @@
     <section class="section">
         <div class="container is-max-desktop">
             <div class="box pb-2">
-                <div class="columns">
-                    <div class="column">
-                        <div class="field">
-                            <label class="label">Nama Lengkap</label>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="Tulis nama lengkap Anda disini" id="input_nama">
+                <fieldset id="fieldset_awal" disabled>
+                    <div class="columns">
+
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Nama Lengkap</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Tulis nama lengkap Anda disini" id="input_nama">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="column is-4">
-                        <div class="field">
-                            <label class="label">Nomor ID (NIK/Passport)</label>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="Masukan nomor identitas" id="input_id">
+                        <div class="column is-4">
+                            <div class="field">
+                                <label class="label">Nomor ID (NIK/Passport)</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Masukan nomor identitas" id="input_id">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="column is-2">
-                        <label class="label">‎</label>
-                        <div class="control">
-                            <button class="button is-primary is-fullwidth" id="periksa" pys-onClick="periksa">Periksa</button>
+                        <div class="column is-2">
+                            <label class="label">‎</label>
+                            <div class="control">
+                                <button class="button is-primary is-fullwidth" id="periksa_button" pys-onClick="periksa">Periksa</button>
+                            </div>
                         </div>
+
                     </div>
-                </div>
-                <article class="message is-danger" id="data_invalid" style="display: none;">
+                </fieldset>
+                <article class="message mt-5 is-danger" id="data_invalid" style="display: none;">
                     <div class="message-body">
                         <strong>Data yang Anda masukan tidak valid.</strong> Silakan periksa kembali.
                     </div>
                 </article>
-                <article class="message is-success" id="data_valid" style="display: none;">
+                <article class="message mt-5 is-success" id="data_valid" style="display: none;">
                     <div class="message-body">
                         <strong>Data yang Anda masukan valid.</strong> Silakan lanjutkan.
                     </div>

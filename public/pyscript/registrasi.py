@@ -3,8 +3,10 @@ from pyodide.http import pyfetch
 from pyodide import create_proxy
 from js import window, console
 
+init = Element('fieldset_awal')
 input_nama = Element('input_nama')
 input_id = Element('input_id')
+periksa_button = Element('periksa_button')
 data_invalid = Element('data_invalid')
 data_valid = Element('data_valid')
 fieldset = Element('fieldset')
@@ -48,6 +50,7 @@ def checkbox_change(e):
 
 
 async def periksa(*args, **kwargs):
+    periksa_button.element.classList.add('is-loading')
     input1 = input_nama.value
     input2 = input_id.value
 
@@ -55,6 +58,7 @@ async def periksa(*args, **kwargs):
 
     if response.status == 200:
         x = await response.json()
+        periksa_button.element.classList.remove('is-loading')
         name = x['data']['fullname']
         idn = x['data']['idNumber']
         it = x['data']['IDType']
@@ -90,10 +94,12 @@ async def periksa(*args, **kwargs):
             dob.element.value = d
     else:
         invalid()
+        periksa_button.element.classList.remove('is-loading')
 
 
 def main():
     checkbox.element.addEventListener('change', create_proxy(checkbox_change))
+    init.element.removeAttribute('disabled')
 
 
 main()
