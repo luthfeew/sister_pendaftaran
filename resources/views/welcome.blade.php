@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <py-script src="/pyscript/registrasi.py"></py-script>
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="container">
@@ -27,7 +28,7 @@
             </div>
 
             <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
+                <!-- <div class="navbar-start">
                     <a class="navbar-item">
                         Home
                     </a>
@@ -57,9 +58,9 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="navbar-end">
+                <!-- <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
                             <a class="button is-primary">
@@ -70,7 +71,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </nav>
@@ -135,181 +136,287 @@
                 <div class="columns">
                     <div class="column">
                         <fieldset disabled id="fieldset">
+                            <form method="POST" action="{{ route('registrasi.store') }}">
+                                @csrf
 
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Pemohon</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <p class="control is-expanded has-icons-left">
-                                        <input class="input" type="text" name="fullname" id="fullname">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-user"></i>
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="field">
-                                    <p class="control is-expanded has-icons-left">
-                                        <input class="input" type="text" name="idnumber" id="idnumber">
-                                        <span class="icon is-small is-left">
-                                            <i class="fa-solid fa-id-card"></i>
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <label class="label">Tanda Pengenal</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field is-narrow">
-                                    <div class="control">
-                                        <label class="radio">
-                                            <input type="radio" name="idtype" id="idtype1" value="KTP">
-                                            KTP
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" name="idtype" id="idtype2" value="Passport">
-                                            Passport
-                                        </label>
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Pemohon</label>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <label class="label">Jenis Kelamin</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field is-narrow">
-                                    <div class="control">
-                                        <label class="radio">
-                                            <input type="radio" name="gender" id="gender1" value="male">
-                                            Laki-laki
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" name="gender" id="gender2" value="female">
-                                            Perempuan
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Alamat</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="text" id="address" name="address">
-                                        <span class="icon is-small is-left">
-                                            <i class="fa-solid fa-map-location-dot"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Agama</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field is-narrow">
-                                    <div class="control">
-                                        <div class="select is-fullwidth">
-                                            <select id="religion" name="religion"></select>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input class="input" type="text" name="fullname" id="fullname" readonly required>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fas fa-user"></i>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input class="input" type="text" name="idNumber" id="idnumber" readonly required>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa-solid fa-id-card"></i>
+                                                </span>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <label class="label">Status Pernikahan</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field is-narrow">
-                                    <div class="control">
-                                        <label class="radio">
-                                            <input type="radio" name="maritalstatus" id="maritalstatus1" value="married">
-                                            Menikah
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" name="maritalstatus" id="maritalstatus2" value="single">
-                                            Lajang
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" name="maritalstatus" id="maritalstatus3" value="divorcee">
-                                            Janda/Duda
-                                        </label>
+                                <div class="field is-horizontal">
+                                    <div class="field-label">
+                                        <label class="label">Tanda Pengenal</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <label class="radio">
+                                                    <input type="radio" name="IDType" id="idtype1" value="KTP">
+                                                    KTP
+                                                </label>
+                                                <label class="radio">
+                                                    <input type="radio" name="IDType" id="idtype2" value="Passport">
+                                                    Passport
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Tempat/Tanggal Lahir</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <p class="control is-expanded has-icons-left">
-                                        <input class="input" type="text" id="pob" name="pob">
-                                        <span class="icon is-small is-left">
-                                            <i class="fa-solid fa-map-location-dot"></i>
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="field">
-                                    <p class="control is-expanded has-icons-left">
-                                        <input class="input" type="text" id="dob" name="dob">
-                                        <span class="icon is-small is-left">
-                                            <i class="fa-solid fa-calendar-days"></i>
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <!-- Left empty for spacing -->
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control">
-                                        <label class="checkbox">
-                                            <input type="checkbox">
-                                            Saya setuju dengan <a href="#">syarat dan ketentuan</a> yang berlaku.
-                                        </label>
+                                <div class="field is-horizontal">
+                                    <div class="field-label">
+                                        <label class="label">Jenis Kelamin</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <label class="radio">
+                                                    <input type="radio" name="gender" id="gender1" value="male">
+                                                    Laki-laki
+                                                </label>
+                                                <label class="radio">
+                                                    <input type="radio" name="gender" id="gender2" value="female">
+                                                    Perempuan
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <!-- Left empty for spacing -->
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control">
-                                        <button class="button is-primary">
-                                            Daftar Rekening Baru
-                                        </button>
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Alamat</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control has-icons-left">
+                                                <input class="input" type="text" id="address" name="address" required>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa-solid fa-map-location-dot"></i>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Agama</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select id="religion" name="religion" required></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label">
+                                        <label class="label">Status Pernikahan</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <label class="radio">
+                                                    <input type="radio" name="maritalStatus" id="maritalstatus1" value="married">
+                                                    Menikah
+                                                </label>
+                                                <label class="radio">
+                                                    <input type="radio" name="maritalStatus" id="maritalstatus2" value="single">
+                                                    Lajang
+                                                </label>
+                                                <label class="radio">
+                                                    <input type="radio" name="maritalStatus" id="maritalstatus3" value="divorcee">
+                                                    Janda/Duda
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Tempat/Tanggal Lahir</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input class="input" type="text" id="pob" name="pob" required>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa-solid fa-map-location-dot"></i>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input class="input" type="text" id="dob" name="dob" required>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa-solid fa-calendar-days"></i>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal pt-5">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Pendidikan Terakhir</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select id="lastedubg" name="lastEduBg" required>
+                                                        <option>-</option>
+                                                        <option value="SD">SD</option>
+                                                        <option value="SMP">SMP</option>
+                                                        <option value="SMA">SMA/Sederajat</option>
+                                                        <option value="D1">D1</option>
+                                                        <option value="D2">D2</option>
+                                                        <option value="D3">D3</option>
+                                                        <option value="S1">S1</option>
+                                                        <option value="S2">S2</option>
+                                                        <option value="S3">S3</option>
+                                                        <option value="Lainnya">Lainnya</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Nomor Telepon</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input class="input" type="text" name="noTelp" id="notelp" maxlength="20" placeholder="Tulis nomor telepon Anda" required>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa-solid fa-phone"></i>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="field">
+                                            <!-- Right empty for spacing -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Hobi</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input class="input" type="text" name="hobby" id="hobby" placeholder="Tulis hobi Anda" required>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa-solid fa-person-walking"></i>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="field">
+                                            <!-- Right empty for spacing -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Email</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input class="input" type="email" name="email" id="email" placeholder="Tulis email Anda" required>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa-solid fa-envelope"></i>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="field">
+                                            <!-- Right empty for spacing -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Nama Ibu Kandung</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input class="input" type="text" name="motherMaidenName" id="mothermaidenname" placeholder="Tulis nama Ibu kandung Anda" required>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa-solid fa-person-dress"></i>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="field">
+                                            <!-- Right empty for spacing -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label">
+                                        <!-- Left empty for spacing -->
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" id="checkbox">
+                                                    Saya setuju dengan <a href="#">syarat dan ketentuan</a> yang berlaku.
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label">
+                                        <!-- Left empty for spacing -->
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control">
+                                                <button class="button is-primary" id="registrasi" disabled>
+                                                    Daftar Rekening Baru
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
                         </fieldset>
                     </div>
                 </div>
@@ -317,86 +424,6 @@
         </div>
     </section>
 
-    <py-script>
-        import asyncio
-        from pyodide.http import pyfetch
-        from js import window, console
-
-        input_nama = Element('input_nama')
-        input_id = Element('input_id')
-        data_invalid = Element('data_invalid')
-        data_valid = Element('data_valid')
-        fieldset = Element('fieldset')
-        fullname = Element('fullname')
-        idnumber = Element('idnumber')
-        idtype1 = Element('idtype1')
-        idtype2 = Element('idtype2')
-        gender1 = Element('gender1')
-        gender2 = Element('gender2')
-        address = Element('address')
-        religion = Element('religion')
-        maritalstatus1 = Element('maritalstatus1')
-        maritalstatus2 = Element('maritalstatus2')
-        maritalstatus3 = Element('maritalstatus3')
-        pob = Element('pob')
-        dob = Element('dob')
-
-        religion_list = ['Islam', 'Kristen Protestan', 'Kristen Katolik', 'Hindu', 'Budha', 'Konghucu']
-
-        def valid():
-            fieldset.element.removeAttribute('disabled')
-            data_valid.element.removeAttribute('style')
-            data_invalid.element.setAttribute('style', 'display: none;')
-
-        def invalid():
-            data_invalid.element.removeAttribute('style')
-            data_valid.element.setAttribute('style', 'display: none;')
-            fieldset.element.setAttribute('disabled', 'disabled')
-
-        async def periksa(*args, **kwargs):
-            input1 = input_nama.value
-            input2 = input_id.value
-
-            response = await pyfetch(url="https://capil.herokuapp.com/api/identity/" + str(input2), method="GET")
-
-            if response.status == 200:
-                x = await response.json()
-                name = x['data']['fullname']
-                idn = x['data']['idNumber']
-                it = x['data']['IDType']
-                gdr = x['data']['gender']
-                add = x['data']['address']
-                r = x['data']['religion']
-                ms = x['data']['maritalStatus']
-                p = x['data']['pob']
-                d = x['data']['dob']
-
-                if not input1.lower()[0:10] == name.lower()[0:10]:
-                    invalid()
-                else:
-                    valid()
-                    fullname.element.value = name
-                    idnumber.element.value = idn
-                    idtype1.element.checked = it == 'KTP'
-                    idtype2.element.checked = it == 'Passport'
-                    gender1.element.checked = gdr == 'male'
-                    gender2.element.checked = gdr == 'female'
-                    address.element.value = add
-                    for x in religion_list:
-                        option = window.document.createElement("option")
-                        option.text = x
-                        option.value = x
-                        if x == r:
-                            option.selected = True
-                        religion.element.appendChild(option)
-                    maritalstatus1.element.checked = ms == 'married'
-                    maritalstatus2.element.checked = ms == 'single'
-                    maritalstatus3.element.checked = ms == 'divorcee'
-                    pob.element.value = p
-                    dob.element.value = d
-            else:
-                invalid()
-    </py-script>
 </body>
 
 </html>

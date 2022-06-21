@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('idNumber', 20);
             $table->string('fullname', 100);
             $table->enum('gender', ['male', 'female']);
-            $table->enum('citizenshipType', ['WNI', 'WNA']);
-            $table->string('citizenship', 50);
+            $table->enum('citizenshipType', ['WNI', 'WNA'])->default('WNI');
+            $table->string('citizenship', 50)->default('Indonesia');
             $table->enum('IDType', ['KTP', 'Passport'])->default('KTP');
             $table->text('address');
             $table->string('lastEduBg', 100);
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('hobby', 50);
             $table->string('noTelp', 20);
             $table->string('email', 100);
-            $table->dateTime('schedule');
+            $table->dateTime('schedule')->nullable();
             $table->timestamps();
         });
     }

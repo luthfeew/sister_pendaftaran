@@ -35,7 +35,26 @@ class RegistrasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'idNumber' => 'required|string|max:20',
+            'fullname' => 'required|string|max:100',
+            'gender' => 'required',
+            'IDType' => 'required|string|max:10',
+            'address' => 'required',
+            'religion' => 'required',
+            'maritalStatus' => 'required',
+            'pob' => 'required',
+            'dob' => 'required',
+            'lastEduBg' => 'required',
+            'noTelp' => 'required',
+            'hobby' => 'required',
+            'email' => 'required',
+            'motherMaidenName' => 'required',
+        ]);
+
+        Registrasi::create($request->all());
+
+        return redirect()->route('success');
     }
 
     /**
@@ -81,5 +100,10 @@ class RegistrasiController extends Controller
     public function destroy(Registrasi $registrasi)
     {
         //
+    }
+
+    public function success()
+    {
+        return view('registrasi_success');
     }
 }

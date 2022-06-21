@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Registrasi extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'idNumber',
+        'fullname',
+        'gender',
+        'citizenshipType',
+        'citizenship',
+        'IDType',
+        'address',
+        'lastEduBg',
+        'religion',
+        'maritalStatus',
+        'motherMaidenName',
+        'pob',
+        'dob',
+        'hobby',
+        'noTelp',
+        'email',
+        'schedule',
+    ];
 }
